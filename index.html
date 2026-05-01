@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goupack s.r.o. | Profesionální přeprava v rámci EU</title>
+    <meta name="description" content="Goupack s.r.o. - Váš spolehlivý partner pro vnitrostátní a mezinárodní dopravu v rámci EU. Kvalitní přepravní služby se sídlem v Praze.">
+    <meta name="keywords" content="přeprava EU, doprava zboží, Goupack, nákladní doprava, logistika Praha, mezinárodní doprava">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navigace -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-blue-700 tracking-tight">GOUPACK</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#uvod" class="text-sm font-medium hover:text-blue-700 transition">Úvod</a>
+                    <a href="#sluzby" class="text-sm font-medium hover:text-blue-700 transition">Služby</a>
+                    <a href="#o-nas" class="text-sm font-medium hover:text-blue-700 transition">O nás</a>
+                    <a href="#kontakt" class="text-sm font-medium hover:text-blue-700 transition">Kontakt</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Sekce -->
+    <section id="uvod" class="hero-gradient h-screen flex items-center justify-center text-white text-center px-4">
+        <div class="max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Spolehlivá přeprava zboží po celé EU</h1>
+            <p class="text-xl md:text-2xl mb-8 text-slate-200">Goupack s.r.o. zajišťuje bezpečný a včasný transport pro vaše podnikání.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#kontakt" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition text-lg">Poptat přepravu</a>
+                <a href="#sluzby" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-lg font-semibold transition text-lg">Naše služby</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Služby -->
+    <section id="sluzby" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Naše Specializace</h2>
+            <div class="w-20 h-1.5 bg-blue-600 mx-auto mb-12"></div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:shadow-xl transition group">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+                        <i class="fas fa-truck text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Mezinárodní doprava</h3>
+                    <p class="text-slate-600">Pravidelné linky a individuální přeprava v rámci všech členských států Evropské unie.</p>
+                </div>
+                
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:shadow-xl transition group">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+                        <i class="fas fa-box-open text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Logistický servis</h3>
+                    <p class="text-slate-600">Zajištění nákladu, sledování zásilek a optimalizace tras pro maximální efektivitu.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:shadow-xl transition group">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Bezpečnost a termíny</h3>
+                    <p class="text-slate-600">Klademe důraz na 100% zabezpečení nákladu a striktní dodržování domluvených časů.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O nás / Detaily firmy -->
+    <section id="o-nas" class="py-20 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">O společnosti Goupack s.r.o.</h2>
+                    <p class="text-slate-400 mb-6 text-lg">
+                        Jsme dynamická přepravní společnost zapsaná u Městského soudu v Praze. Naším cílem je poskytovat špičkové služby v oblasti vnitrostátní i mezinárodní dopravy s využitím moderního vozového parku.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Vozidla do 3,5 tuny pro rychlou přepravu věcí.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Mezinárodní oprávnění pro provoz v rámci EU.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Individuální přístup ke každé zakázce.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                    <h4 class="text-xl font-semibold mb-6 border-b border-white/10 pb-4">Fakturační údaje</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+                        <div>
+                            <p class="text-slate-500 uppercase tracking-wider mb-1">Název firmy</p>
+                            <p class="font-medium">Goupack s.r.o.</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 uppercase tracking-wider mb-1">IČO</p>
+                            <p class="font-medium">23025379</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 uppercase tracking-wider mb-1">Sídlo</p>
+                            <p class="font-medium text-slate-300">Mladých Běchovic 2, Běchovice<br>190 11 Praha 9</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 uppercase tracking-wider mb-1">Datová schránka</p>
+                            <p class="font-medium tracking-widest">8q7qfjy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Kontaktujte nás</h2>
+                <p class="text-slate-600">Jsme vám k dispozici pro veškeré dotazy ohledně dopravy.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Info karty -->
+                <div class="space-y-6">
+                    <div class="flex items-center p-6 bg-slate-50 rounded-xl">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-500">Telefon</p>
+                            <a href="tel:+420704727877" class="font-semibold text-lg hover:text-blue-600">+420 704 727 877</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-6 bg-slate-50 rounded-xl">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-500">E-mail</p>
+                            <a href="mailto:cargo@target-sew.pro" class="font-semibold text-lg hover:text-blue-600">cargo@target-sew.pro</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-6 bg-slate-50 rounded-xl">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-500">Web</p>
+                            <p class="font-semibold text-lg uppercase tracking-tight">target-sew.pro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontaktní formulář -->
+                <div class="lg:col-span-2">
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-200">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Jméno a příjmení</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition outline-none" placeholder="Vaše jméno">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">E-mail</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition outline-none" placeholder="vas@email.cz">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Zpráva / Poptávka</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition outline-none" placeholder="Popište vaši potřebu přepravy..."></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-colors shadow-lg">Odeslat zprávu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 py-12 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm mb-4">
+                © 2026 Goupack s.r.o. Všechna práva vyhrazena. 
+            </p>
+            <p class="text-slate-400 text-xs">
+                Sídlo: Mladých Běchovic 2, 190 11 Praha 9 | IČO: 23025379 | Společnost zapsaná u Městského soudu v Praze.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Jednoduchá správa mobilního menu (vizuální efekt)
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            alert("V reálném prostředí by se zde otevřelo navigační menu pro mobilní telefony.");
+        });
+    </script>
+</body>
+</html>
