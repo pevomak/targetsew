@@ -1,0 +1,272 @@
+```html
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goupack s.r.o. | Mezinárodní a vnitrostátní doprava EU</title>
+    <meta name="description" content="Goupack s.r.o. zajišťuje spolehlivou vnitrostátní i mezinárodní přepravu zboží v rámci EU. Rychlá komunikace a profesionální logistické služby.">
+    <meta name="keywords" content="Goupack, doprava EU, logistika, přeprava zboží, mezinárodní doprava, Praha">
+    <meta name="theme-color" content="#0f172a" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: "Inter", sans-serif; background: #f8fafc; color: #0f172a; overflow-x: hidden; }
+        .hero-bg { position: relative; background-size: cover; background-position: center; transition: background-image 1.2s ease-in-out; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.75)); }
+        .glass { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .mobile-menu { transform: translateX(100%); transition: transform 0.35s ease; }
+        .mobile-menu.open { transform: translateX(0); }
+        .card-hover { transition: all 0.3s ease; border: 1px solid transparent; }
+        .card-hover:hover { transform: translateY(-6px); border-color: rgba(59, 130, 246, 0.3); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .input-style { width: 100%; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); padding: 1rem 1.25rem; color: white; outline: none; transition: 0.25s ease; }
+        .input-style:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGACE -->
+    <nav class="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-20 flex items-center justify-between">
+                <a href="#uvod" class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/25">
+                        <i class="fas fa-truck-fast text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-black tracking-tight text-slate-900">GOUPACK</div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-widest">Logistics EU</div>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="#uvod" class="text-sm font-semibold text-slate-700 hover:text-blue-700 transition">Úvod</a>
+                    <a href="#sluzby" class="text-sm font-semibold text-slate-700 hover:text-blue-700 transition">Služby</a>
+                    <a href="#o-nas" class="text-sm font-semibold text-slate-700 hover:text-blue-700 transition">O nás</a>
+                    <a href="#kontakt" class="text-sm font-semibold text-slate-700 hover:text-blue-700 transition">Kontakt</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden w-11 h-11 rounded-xl border border-slate-200 flex items-center justify-center text-slate-700">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="side-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white z-[60] shadow-2xl md:hidden">
+        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+            <span class="text-lg font-black">MENU</span>
+            <button id="close-menu" class="w-10 h-10 rounded-lg bg-slate-100 text-slate-700"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="flex flex-col p-6 gap-6">
+            <a href="#uvod" class="mobile-link text-lg font-semibold text-slate-700">Úvod</a>
+            <a href="#sluzby" class="mobile-link text-lg font-semibold text-slate-700">Služby</a>
+            <a href="#o-nas" class="mobile-link text-lg font-semibold text-slate-700">O nás</a>
+            <a href="#kontakt" class="mobile-link text-lg font-semibold text-slate-700">Kontakt</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section id="uvod" class="hero-bg min-h-screen flex items-center justify-center text-center px-4 pt-20">
+        <div class="hero-overlay"></div>
+        <div class="relative z-10 max-w-5xl">
+            <div class="inline-flex items-center gap-2 glass px-5 py-2 rounded-full text-sm font-semibold text-blue-100 mb-8">
+                <i class="fas fa-location-dot"></i> Celá Evropská unie
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+                Vaše zboží pod<br><span class="gradient-text">spolehlivými křídly</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-slate-300 max-w-3xl mx-auto mb-10 font-light">
+                Goupack s.r.o. – specialista na expresní a vnitrostátní přepravu. 
+                S námi dorazí váš náklad vždy včas a v pořádku.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a href="#kontakt" class="bg-blue-600 hover:bg-blue-700 text-white px-9 py-5 rounded-2xl font-bold transition transform active:scale-95 shadow-xl shadow-blue-600/20">Poptat přepravu</a>
+                <a href="#sluzby" class="glass text-white px-9 py-5 rounded-2xl font-bold hover:bg-white/15 transition">Naše služby</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLUŽBY -->
+    <section id="sluzby" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-black mb-16">Logistické Služby</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-slate-50 rounded-3xl p-10 text-left">
+                    <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
+                        <i class="fas fa-truck-moving text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Doprava v EU</h3>
+                    <p class="text-slate-600 leading-relaxed">Komplexní řešení přepravy mezi členskými státy s důrazem na optimalizaci tras.</p>
+                </div>
+                <div class="card-hover bg-slate-50 rounded-3xl p-10 text-left">
+                    <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
+                        <i class="fas fa-bolt text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Expresní doručení</h3>
+                    <p class="text-slate-600 leading-relaxed">Prioritní transport pro časově náročné zásilky v režimu door-to-door.</p>
+                </div>
+                <div class="card-hover bg-slate-50 rounded-3xl p-10 text-left">
+                    <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
+                        <i class="fas fa-shield-check text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Bezpečný náklad</h3>
+                    <p class="text-slate-600 leading-relaxed">Moderní vozový park a vysoké pojistné krytí pro maximální ochranu zásilky.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O NÁS -->
+    <section id="o-nas" class="py-24 bg-slate-950 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-8 italic italic">GOUPACK s.r.o.</h2>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-8">
+                        Jsme dynamická společnost zapsaná u Městského soudu v Praze. Zaměřujeme se na efektivitu 
+                        a férový přístup k logistice. Naším cílem je dlouhodobé partnerství založené na důvěře.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass rounded-3xl p-6">
+                            <div class="text-3xl font-black text-blue-400 mb-1">EU</div>
+                            <div class="text-slate-500 text-xs uppercase tracking-tighter">Oprávnění k přepravě</div>
+                        </div>
+                        <div class="glass rounded-3xl p-6">
+                            <div class="text-3xl font-black text-blue-400 mb-1">IČO</div>
+                            <div class="text-slate-500 text-xs uppercase tracking-tighter">23025379</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass rounded-[2.5rem] p-10">
+                    <h3 class="text-xl font-bold mb-8 uppercase tracking-widest text-blue-400">Identifikační údaje</h3>
+                    <div class="space-y-6 text-sm">
+                        <div class="flex justify-between border-b border-white/10 pb-4">
+                            <span class="text-slate-500">Právní forma</span>
+                            <span class="font-medium text-right">Společnost s r.o.</span>
+                        </div>
+                        <div class="flex justify-between border-b border-white/10 pb-4">
+                            <span class="text-slate-500">Datová schránka</span>
+                            <span class="font-mono text-blue-300">8q7qfjy</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Sídlo</span>
+                            <span class="text-right">Mladých Běchovic 2<br>190 11 Praha 9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-14">
+                <div>
+                    <h2 class="text-4xl font-black mb-6 uppercase">Kontakt</h2>
+                    <p class="text-slate-600 mb-10 leading-relaxed">
+                        Zašlete nám poptávku a my pro vás připravíme nejvýhodnější logistické řešení.
+                    </p>
+                    <div class="space-y-4">
+                        <a href="tel:+420704727877" class="flex items-center gap-4 bg-slate-50 p-5 rounded-2xl hover:bg-blue-50 transition">
+                            <i class="fas fa-phone text-blue-600 text-xl"></i>
+                            <span class="font-bold">+420 704 727 877</span>
+                        </a>
+                        <a href="mailto:cargo@target-sew.pro" class="flex items-center gap-4 bg-slate-50 p-5 rounded-2xl hover:bg-blue-50 transition">
+                            <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                            <span class="font-bold break-all">cargo@target-sew.pro</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-12">
+                        <form id="contactForm" class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Jméno</label>
+                                <input type="text" required class="input-style" placeholder="Jan Novák">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">E-mail</label>
+                                <input type="email" required class="input-style" placeholder="jan@novak.cz">
+                            </div>
+                            <div class="md:col-span-2 space-y-2">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Detaily přepravy</label>
+                                <textarea rows="4" required class="input-style resize-none" placeholder="Co a kam potřebujete přepravit?"></textarea>
+                            </div>
+                            <div class="md:col-span-2 pt-4">
+                                <button type="submit" class="w-full bg-blue-600 text-white font-black py-5 rounded-2xl hover:bg-blue-500 transition-all uppercase tracking-widest">Odeslat poptávku</button>
+                            </div>
+                        </form>
+                        <div id="formSuccess" class="hidden text-center py-10">
+                            <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white mb-2">Odesláno</h3>
+                            <p class="text-slate-400">Děkujeme, vaši zprávu zpracujeme co nejdříve.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-100 py-12 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="text-xl font-black text-slate-300 mb-6 tracking-widest uppercase">GOUPACK</div>
+            <p class="text-slate-400 text-xs uppercase tracking-widest">
+                © 2026 Goupack s.r.o. | IČO: 23025379 | Sídlo: Praha 9 – Běchovice
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamické pozadí (Unsplash truck images)
+        const truckImages = [
+            'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1586191582151-f746323bc781?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1591768793355-74d7af23f111?auto=format&fit=crop&w=1920&q=80'
+        ];
+
+        let imgIdx = 0;
+        const hero = document.getElementById("uvod");
+
+        function cycleBg() {
+            hero.style.backgroundImage = `url('${truckImages[imgIdx]}')`;
+            imgIdx = (imgIdx + 1) % truckImages.length;
+        }
+        cycleBg();
+        setInterval(cycleBg, 6000);
+
+        // Mobilní menu
+        const menuBtn = document.getElementById("mobile-menu-button");
+        const closeBtn = document.getElementById("close-menu");
+        const sideMenu = document.getElementById("side-menu");
+        const links = document.querySelectorAll(".mobile-link");
+
+        function toggleMenu() {
+            sideMenu.classList.toggle("open");
+            document.body.classList.toggle("overflow-hidden");
+        }
+
+        menuBtn.addEventListener("click", toggleMenu);
+        closeBtn.addEventListener("click", toggleMenu);
+        links.forEach(l => l.addEventListener("click", toggleMenu));
+
+        // Form logic
+        const contactForm = document.getElementById("contactForm");
+        const formSuccess = document.getElementById("formSuccess");
+
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            contactForm.classList.add("hidden");
+            formSuccess.classList.remove("hidden");
+        });
+    </script>
+</body>
+</html>
+
+```
