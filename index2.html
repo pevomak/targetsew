@@ -3,27 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goupack s.r.o. | Expresní doprava EU</title>
+    <title>Goupack s.r.o. | Professional Logistics EU</title>
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
-        // Design Tokens derived from Semantic Data
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
+                        // Golden Ratio derived palette
+                        // Primary #1d4ed8
+                        // Phi-muted: #1d4ed8 / 1.618 (desaturated)
                         brand: {
-                            primary: '#1d4ed8',   // Action Blue
-                            secondary: '#0f172a', // Group Navy
-                            accent: '#3b82f6',
+                            primary: '#1d4ed8',   // Phi-Action
+                            secondary: '#0a101f', // Dark Deep Navy (derived from #0f172a / phi)
+                            accent: '#60a5fa',    // Phi-Highlight
+                        },
+                        surface: {
+                            base: '#f8fafc',
+                            card: '#ffffff',
+                            phi: '#e2e8f0'        // Step calculated by golden ratio contrast
                         }
                     },
-                    borderRadius: {
-                        '4xl': '2rem',
+                    spacing: {
+                        'phi-1': '0.618rem',
+                        'phi-2': '1rem',
+                        'phi-3': '1.618rem',
+                        'phi-4': '2.618rem',
+                        'phi-5': '4.236rem',
+                        'phi-6': '6.854rem',
                     }
                 }
             }
@@ -32,42 +42,41 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
         
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .intent-transition { transition: all 0.618s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        .intent-transition {
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        /* Apply Golden Ratio Opacity Steps */
         .mode-action .bg-intent { background-color: #1d4ed8; }
-        .mode-group .bg-intent { background-color: #0f172a; }
-        
+        .mode-group .bg-intent { background-color: #0a101f; }
         .mode-action .text-intent { color: #1d4ed8; }
-        .mode-group .text-intent { color: #0f172a; }
+        .mode-group .text-intent { color: #0a101f; }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .phi-glass { 
+            background: rgba(255, 255, 255, 0.06); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.16); /* 0.1 * 1.618 */
         }
+        
+        canvas#mapCanvas { width: 100%; height: auto; }
     </style>
 </head>
-<body class="mode-action bg-slate-50 text-slate-900 overflow-x-hidden intent-transition">
+<body class="mode-action text-slate-900 overflow-x-hidden intent-transition">
 
-    <!-- Intent Switcher (Top Bar) -->
-    <div class="fixed top-0 w-full z-[100] bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <!-- Intent Switcher -->
+    <div class="fixed top-0 w-full z-[100] bg-white/61 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">System Ready</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></div>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Precision Engine Active</span>
             </div>
             
             <div class="flex bg-slate-100 p-1 rounded-full border border-slate-200">
-                <button onclick="setIntent('ACTION')" id="btn-action" class="px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white shadow-sm text-brand-primary">
-                    ACTION MODE
+                <button onclick="setIntent('ACTION')" id="btn-action" class="px-5 py-1 rounded-full text-xs font-bold transition-all bg-white shadow-sm text-brand-primary">
+                    CZE
                 </button>
-                <button onclick="setIntent('GROUP')" id="btn-group" class="px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500">
-                    GROUP MODE
+                <button onclick="setIntent('GROUP')" id="btn-group" class="px-5 py-1 rounded-full text-xs font-bold transition-all text-slate-500">
+                    ENG
                 </button>
             </div>
         </div>
@@ -75,246 +84,231 @@
 
     <!-- Navigation -->
     <nav class="pt-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-24 items-center">
-                <div class="flex flex-col">
-                    <span class="text-3xl font-black tracking-tighter text-intent intent-transition">GOUPACK</span>
-                    <span class="text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">Logistics EU</span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#services" class="text-sm font-semibold hover:text-intent transition">Služby</a>
-                    <a href="#identity" class="text-sm font-semibold hover:text-intent transition">Identita</a>
-                    <a href="#contact" class="bg-intent text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg shadow-blue-900/20 hover:scale-105 transition-all intent-transition">
-                        Poptávka
-                    </a>
-                </div>
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="text-3xl font-black tracking-tighter text-intent intent-transition">GOUPACK</span>
+                <span id="nav-subtitle" class="text-[9px] font-bold text-slate-400 tracking-[0.4em] uppercase">Logistika EU</span>
+            </div>
+            <div class="hidden md:flex space-x-10 items-center">
+                <a href="#services" id="nav-link-1" class="text-sm font-semibold hover:text-intent transition">Služby</a>
+                <a href="#identity" id="nav-link-2" class="text-sm font-semibold hover:text-intent transition">Identita</a>
+                <a href="#contact" id="nav-cta" class="bg-intent text-white px-8 py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-900/10 hover:scale-105 transition-all intent-transition">Poptávka</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative py-20 lg:py-32 overflow-hidden">
-        <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10">
-            <svg viewBox="0 0 100 100" class="w-full h-full"><path d="M0 0 L100 100 M100 0 L0 100" stroke="currentColor" stroke-width="0.1"/></svg>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <!-- Hero -->
+    <header class="relative py-phi-5 lg:py-phi-6">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-3xl">
-                <div id="hero-tag" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-intent/10 text-intent text-xs font-bold uppercase tracking-wider mb-6 intent-transition">
-                    <i data-lucide="zap" class="w-3 h-3"></i>
-                    <span>Prioritní odbavení</span>
+                <div id="hero-tag" class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-intent/10 text-intent text-xs font-bold uppercase tracking-widest mb-phi-3 intent-transition">
+                    <i data-lucide="zap" class="w-3 h-3"></i><span>Prioritní odbavení</span>
                 </div>
-                <h1 id="hero-h1" class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] intent-transition">
-                    Expresní doručení, na které se můžete spolehnout.
-                </h1>
-                <p id="hero-p" class="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
-                    Přistavíme vůz, naložíme a doručíme bez prodlení. Vaše zboží je pod naší ochranou 24/7.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button class="bg-intent text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-intent/30 hover:brightness-110 transition-all intent-transition">
-                        Zjistit cenu dopravy
-                    </button>
-                    <button class="bg-white border border-slate-200 text-slate-900 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all">
-                        Naše reference
-                    </button>
-                </div>
+                <h1 id="hero-h1" class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-phi-4 leading-[1.05] intent-transition">Expresní doručení, na které se můžete spolehnout.</h1>
+                <p id="hero-p" class="text-xl text-slate-500 mb-phi-4 leading-relaxed max-w-2xl transition-opacity duration-500">Přistavíme vůz, naložíme a doručíme bez prodlení.</p>
+                <button id="hero-cta-main" class="bg-intent text-white px-12 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-intent/20 hover:brightness-110 transition-all intent-transition">Zjistit cenu</button>
             </div>
         </div>
     </header>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div class="max-w-2xl">
-                    <h2 class="text-3xl font-bold mb-4">Specializace a řešení</h2>
-                    <p class="text-slate-500">Prověřené logistické procesy pro náročné klienty v rámci celé Evropské unie.</p>
-                </div>
-                <div class="w-20 h-1 bg-intent intent-transition"></div>
+    <!-- Services Grid -->
+    <section id="services" class="py-phi-6 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center space-x-4 mb-phi-4">
+                <div class="w-12 h-0.5 bg-intent intent-transition"></div>
+                <h2 id="services-h2" class="text-2xl font-bold uppercase tracking-tighter">Služby</h2>
             </div>
-
-            <div id="services-grid" class="grid md:grid-cols-3 gap-8">
-                <!-- Dynamic Content Injection -->
-            </div>
+            <div id="services-grid" class="grid md:grid-cols-3 gap-phi-4"></div>
         </div>
     </section>
 
-    <!-- Identity & Finance -->
-    <section id="identity" class="py-24 bg-slate-900 text-white rounded-t-[4rem] relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20 pointer-events-none">
-            <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,#3b82f6_0%,transparent_50%)]"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <!-- Identity: Data Left / Map Right -->
+    <section id="identity" class="py-phi-6 bg-brand-secondary text-white rounded-t-[3.5rem] overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="grid lg:grid-cols-2 gap-phi-5 items-center">
+                <!-- Left: Identity Data -->
                 <div>
-                    <h2 class="text-4xl font-bold mb-6 italic tracking-tighter">Goupack s.r.o.</h2>
-                    <p class="text-slate-400 text-lg mb-12 leading-relaxed">
-                        Jsme transparentní partner se sídlem v Praze. Naše finanční stabilita je doložena vedením účtu u ČSOB a aktivním přístupem k moderní administrativě.
-                    </p>
+                    <h2 class="text-4xl font-bold mb-phi-3 italic tracking-tighter">Goupack s.r.o.</h2>
+                    <p id="identity-p" class="text-slate-400 text-lg mb-phi-4 leading-relaxed">Prověřený logistický partner pro kritické přepravy v rámci Evropské unie.</p>
                     
-                    <div class="space-y-4">
-                        <div class="glass p-6 rounded-3xl flex items-center justify-between group cursor-pointer hover:bg-white/5 transition-colors">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
-                                    <i data-lucide="building-2" class="text-blue-400"></i>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Sídlo společnosti</p>
-                                    <p class="font-semibold">Mladých Běchovic 2, Praha 9</p>
-                                </div>
+                    <div class="grid gap-phi-2">
+                        <div class="phi-glass p-phi-3 rounded-[2rem] flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-blue-400"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.3em]">Adresa / Office</p>
+                                <p class="font-semibold text-slate-100">Mladých Běchovic 2, Praha 9</p>
                             </div>
-                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-white transition-colors"></i>
                         </div>
-
-                        <div class="glass p-6 rounded-3xl flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
-                                    <i data-lucide="credit-card" class="text-blue-400"></i>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Bankovní spojení (ČSOB)</p>
-                                    <p class="font-mono text-sm">371195679/0300</p>
-                                </div>
+                        <div class="phi-glass p-phi-3 rounded-[2rem] flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-blue-400"><i data-lucide="file-text"></i></div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.3em]">Identifikace / Tax ID</p>
+                                <p class="font-bold text-slate-100">IČO: 23025379 | DIČ: CZ23025379</p>
+                            </div>
+                        </div>
+                        <div class="phi-glass p-phi-3 rounded-[2rem] flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-blue-400"><i data-lucide="database"></i></div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.3em]">Datová schránka / Data Box</p>
+                                <p class="font-mono text-blue-300">8q7qfjy</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white text-slate-900 p-10 rounded-[3rem] shadow-2xl">
-                    <h3 class="text-xl font-bold mb-8 flex items-center">
-                        <i data-lucide="file-text" class="mr-2 text-intent intent-transition"></i>
-                        Právní & Daňové údaje
-                    </h3>
-                    <div class="space-y-6">
-                        <div class="flex justify-between border-b pb-4">
-                            <span class="text-slate-400 text-sm">IČO</span>
-                            <span class="font-bold">23025379</span>
-                        </div>
-                        <div class="flex justify-between border-b pb-4">
-                            <span class="text-slate-400 text-sm">DIČ</span>
-                            <span class="font-bold tracking-tight">CZ23025379</span>
-                        </div>
-                        <div class="flex justify-between border-b pb-4">
-                            <span class="text-slate-400 text-sm">Datová schránka</span>
-                            <span class="font-mono font-bold text-blue-600">8q7qfjy</span>
-                        </div>
-                        <div class="flex justify-between border-b pb-4">
-                            <span class="text-slate-400 text-sm">IBAN</span>
-                            <span class="text-xs font-mono">CZ88 0300 0000 0003 7119 5679</span>
-                        </div>
-                        <div class="pt-4">
-                            <div class="bg-blue-50 p-4 rounded-2xl flex items-start space-x-3">
-                                <i data-lucide="info" class="w-5 h-5 text-blue-600 mt-0.5"></i>
-                                <p class="text-xs text-blue-800 leading-normal">
-                                    Společnost je vedená u Městského soudu v Praze. Bankovní účet je ověřen a veden u Československé obchodní banky, a.s.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Right: Particle Map -->
+                <div class="relative bg-white/5 rounded-[3rem] p-phi-2 min-h-[400px] flex items-center justify-center overflow-hidden">
+                    <canvas id="mapCanvas"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-50 py-12 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.5em] mb-4">Goupack Logistics Group</p>
-            <p class="text-slate-500 text-xs">© 2026 Goupack s.r.o. Všechna práva vyhrazena. | Ochrana osobních údajů</p>
+    <footer class="bg-slate-50 py-16 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-[0.618em]">Goupack Precision Logistics</p>
         </div>
     </footer>
 
     <script>
+        // --- ParticleMap Engine ---
+        var ParticleMap = function(geojson, options) {
+            this.geojson = geojson;
+            this.options = options || {};
+            this.options.pixelResolution = 10;
+            this.options.drawOptions = { arcSize: 1.5, color: '#3b82f6', opacity: 1 };
+            this.canvas = this.options.canvas;
+            this.setCanvasRatio(this.canvas);
+            this._polygons = [];
+            this.parse(geojson);
+            this.drawMap();
+        };
+
+        ParticleMap.prototype = {
+            _recursiveFindPolygons: function(obj) {
+                if (obj.type == 'Polygon') this._polygons.push(obj);
+                else if (obj.type == 'MultiPolygon') obj.coordinates.forEach(c => this._polygons.push({coordinates: c}));
+                else if (obj.type == 'Feature') this._recursiveFindPolygons(obj.geometry);
+                else if (obj.type == 'FeatureCollection') obj.features.forEach(f => this._recursiveFindPolygons(f));
+            },
+            parse: function(geojson) {
+                this._recursiveFindPolygons(geojson);
+                let minx, miny, maxx, maxy;
+                this._polygons.forEach(p => {
+                    p.coordinates[0].forEach(c => {
+                        if (maxx === undefined) { maxx = minx = c[0]; maxy = miny = c[1]; }
+                        maxx = Math.max(maxx, c[0]); minx = Math.min(minx, c[0]);
+                        maxy = Math.max(maxy, c[1]); miny = Math.min(miny, c[1]);
+                    });
+                });
+                this._bounds = { min: {x: minx, y: miny}, max: {x: maxx, y: maxy} };
+            },
+            drawMap: function() {
+                const { width, height } = this.canvas;
+                const scale = Math.min(width / (this._bounds.max.x - this._bounds.min.x), height / (this._bounds.max.y - this._bounds.min.y)) * 0.8;
+                const ox = (width - (this._bounds.max.x - this._bounds.min.x) * scale) / 2;
+                const oy = (height - (this._bounds.max.y - this._bounds.min.y) * scale) / 2;
+
+                const ctx = this.canvas.getContext('2d');
+                const res = this.options.pixelResolution;
+                
+                for(let x=0; x<width; x+=res) {
+                    for(let y=0; y<height; y+=res) {
+                        const mx = (x - ox) / scale + this._bounds.min.x;
+                        const my = this._bounds.max.y - (y - oy) / scale;
+                        
+                        let inside = false;
+                        this._polygons.forEach(poly => {
+                            const c = poly.coordinates[0];
+                            for(let i=0, j=c.length-1; i<c.length; j=i++) {
+                                if(((c[i][1]>my) != (c[j][1]>my)) && (mx < (c[j][0]-c[i][0])*(my-c[i][1])/(c[j][1]-c[i][1])+c[i][0])) inside = !inside;
+                            }
+                        });
+
+                        ctx.beginPath();
+                        ctx.arc(x, y, inside ? 1.4 : 0.6, 0, Math.PI*2);
+                        ctx.fillStyle = inside ? '#3b82f6' : 'rgba(255,255,255,0.08)';
+                        ctx.fill();
+                    }
+                }
+            },
+            setCanvasRatio: function(canvas) {
+                const ratio = window.devicePixelRatio || 1;
+                canvas.width = 600 * ratio; canvas.height = 500 * ratio;
+                canvas.getContext('2d').scale(ratio, ratio);
+            }
+        };
+
+        // --- Data & State ---
         const semanticData = {
-          "ACTION": {
-            "title": "Expresní doručení, na které se můžete spolehnout.",
-            "desc": "Přistavíme vůz, naložíme a doručíme bez prodlení. Vaše zboží je pod naší ochranou 24/7.",
-            "tag": "Prioritní odbavení",
-            "tagIcon": "zap",
-            "services": [
-              {"title": "Blesková poptávka", "desc": "Reagujeme do 15 minut. Získejte pevnou cenu za dopravu ihned.", "icon": "zap"},
-              {"title": "Mezinárodní expres", "desc": "Specializace na kritické trasy EU v rekordních časech.", "icon": "gauge"},
-              {"title": "Pojištěný náklad", "desc": "Každá zásilka je kryta pojištěním CMR pro vaši bezpečnost.", "icon": "shield-check"}
-            ]
-          },
-          "GROUP": {
-            "title": "Architekti vaší evropské logistické sítě.",
-            "desc": "Stabilní zázemí, transparentní financování a precizní procesy. Partner pro váš dlouhodobý růst.",
-            "tag": "Strategické partnerství",
-            "tagIcon": "briefcase",
-            "services": [
-              {"title": "Komplexní FTL řešení", "desc": "Celovozové přepravy s vysokou spolehlivostí a optimalizací tras.", "icon": "layers"},
-              {"title": "Administrativní servis", "desc": "Plná podpora včetně fakturace v EUR/CZK a datových schránek.", "icon": "file-check"},
-              {"title": "Logistický audit", "desc": "Zefektivníme vaše trasy a snížíme provozní náklady.", "icon": "trending-up"}
-            ]
-          }
+            "ACTION": {
+                "lang": "CZE",
+                "nav": ["Služby", "Identita", "Poptávka", "Logistika EU"],
+                "hero": ["Expresní doručení, na které se můžete spolehnout.", "Přistavíme vůz, naložíme a doručíme bez prodlení. Vaše zboží je pod naší ochranou 24/7.", "Prioritní odbavení"],
+                "services": [
+                    {title: "Blesková poptávka", desc: "Reagujeme do 15 minut. Získejte pevnou cenu za dopravu ihned.", icon: "zap"},
+                    {title: "EU Expres", desc: "Specializace na kritické trasy v rekordních časech v rámci EU.", icon: "gauge"},
+                    {title: "Pojištěný náklad", desc: "Každá zásilka je kryta pojištěním CMR pro vaši bezpečnost.", icon: "shield-check"}
+                ],
+                "identity": "Jsme transparentní partner se sídlem v Praze. Naše finanční stabilita je doložena vedením účtu u ČSOB."
+            },
+            "GROUP": {
+                "lang": "ENG",
+                "nav": ["Services", "Identity", "Inquiry", "Logistics EU"],
+                "hero": ["Express delivery you can strictly rely on.", "We provide vehicles, load, and deliver without delay. Your goods are under our protection 24/7.", "Priority handling"],
+                "services": [
+                    {title: "Instant Quote", desc: "We respond within 15 minutes. Get your fixed price now.", icon: "zap"},
+                    {title: "EU Express", desc: "Specialized in critical EU routes with record-breaking delivery times.", icon: "gauge"},
+                    {title: "Insured Cargo", desc: "Every shipment is fully covered by CMR insurance for your peace of mind.", icon: "shield-check"}
+                ],
+                "identity": "We are a transparent logistics partner based in Prague. Our financial stability is backed by our corporate banking at ČSOB."
+            }
         };
 
         function setIntent(mode) {
-            const isAction = mode === 'ACTION';
             const data = semanticData[mode];
+            const isAction = mode === 'ACTION';
             
-            // UI State
             document.body.classList.toggle('mode-action', isAction);
             document.body.classList.toggle('mode-group', !isAction);
             
-            // Buttons
-            const btnAction = document.getElementById('btn-action');
-            const btnGroup = document.getElementById('btn-group');
-            if (btnAction) btnAction.className = isAction 
-                ? 'px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white shadow-sm text-brand-primary' 
-                : 'px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500';
-            if (btnGroup) btnGroup.className = !isAction 
-                ? 'px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white shadow-sm text-brand-secondary' 
-                : 'px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500';
+            // Language Button Styles
+            document.getElementById('btn-action').className = isAction ? 'px-5 py-1 rounded-full text-xs font-bold transition-all bg-white shadow-sm text-brand-primary' : 'px-5 py-1 rounded-full text-xs font-bold transition-all text-slate-500';
+            document.getElementById('btn-group').className = !isAction ? 'px-5 py-1 rounded-full text-xs font-bold transition-all bg-white shadow-sm text-brand-secondary' : 'px-5 py-1 rounded-full text-xs font-bold transition-all text-slate-500';
 
-            // Content Swap with animation
-            const heroH1 = document.getElementById('hero-h1');
-            const heroP = document.getElementById('hero-p');
-            const heroTag = document.getElementById('hero-tag');
-            
-            if (heroH1) heroH1.style.opacity = 0;
-            if (heroP) heroP.style.opacity = 0;
-            
-            setTimeout(() => {
-                if (heroH1) {
-                    heroH1.innerText = data.title;
-                    heroH1.style.opacity = 1;
-                }
-                if (heroP) {
-                    heroP.innerText = data.desc;
-                    heroP.style.opacity = 1;
-                }
-                if (heroTag) {
-                    const tagSpan = heroTag.querySelector('span');
-                    const tagIcon = heroTag.querySelector('i');
-                    if (tagSpan) tagSpan.innerText = data.tag;
-                    if (tagIcon) tagIcon.setAttribute('data-lucide', data.tagIcon);
-                }
-                
-                // Services Injection
-                const grid = document.getElementById('services-grid');
-                if (grid) {
-                    grid.innerHTML = data.services.map(s => `
-                        <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:border-intent/30 transition-all duration-500">
-                            <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-intent group-hover:text-white transition-all intent-transition">
-                                <i data-lucide="${s.icon}" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4">${s.title}</h3>
-                            <p class="text-slate-500 leading-relaxed text-sm">${s.desc}</p>
-                        </div>
-                    `).join('');
-                }
-                
-                if (window.lucide) lucide.createIcons();
-            }, 300);
+            // Text Updates
+            document.getElementById('nav-subtitle').innerText = data.nav[3];
+            document.getElementById('nav-link-1').innerText = data.nav[0];
+            document.getElementById('nav-link-2').innerText = data.nav[1];
+            document.getElementById('nav-cta').innerText = data.nav[2];
+            document.getElementById('hero-h1').innerText = data.hero[0];
+            document.getElementById('hero-p').innerText = data.hero[1];
+            document.getElementById('hero-tag').querySelector('span').innerText = data.hero[2];
+            document.getElementById('identity-p').innerText = data.identity;
+            document.getElementById('services-h2').innerText = isAction ? "Služby" : "Services";
+            document.getElementById('hero-cta-main').innerText = isAction ? "Zjistit cenu" : "Get a Quote";
+
+            // Grid Render
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = data.services.map(s => `
+                <div class="group p-10 rounded-[2.5rem] bg-surface-base border border-slate-100 hover:border-intent/20 transition-all duration-500">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm text-intent group-hover:bg-intent group-hover:text-white transition-all intent-transition">
+                        <i data-lucide="${s.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">${s.title}</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">${s.desc}</p>
+                </div>
+            `).join('');
+            lucide.createIcons();
         }
 
-        // Initialize
-        window.onload = () => {
+        window.onload = async () => {
             setIntent('ACTION');
-            if (window.lucide) lucide.createIcons();
+            try {
+                const res = await fetch('https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson');
+                const geo = await res.json();
+                new ParticleMap(geo, { canvas: document.getElementById('mapCanvas') });
+            } catch(e) { console.error("Map Load Error", e); }
         };
     </script>
 </body>
